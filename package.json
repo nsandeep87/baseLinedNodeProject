@@ -1,0 +1,14 @@
+{
+  "name": "base_line_node_project",
+  "version": "1.0.0",
+  "description": "This is a baselined Node project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TeamNode",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
