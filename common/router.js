@@ -1,6 +1,5 @@
 let express = require("express");
 const mongoose = require("mongoose");
-let validateUser = require("./authMiddleWare")
 let signInUitility = require("./utility/login-utility")
 let router = express.Router();
 const User = require("../model/User");
@@ -29,7 +28,7 @@ router.post("/login",(req,res)=>{
         res.send(token)
     }
 });
-router.get("/menu",validateUser,(req,res)=>{
+router.get("/menu",signInUitility.verifyToken,(req,res)=>{
    
     res.send({
         "j":"k"

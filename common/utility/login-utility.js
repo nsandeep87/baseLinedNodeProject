@@ -3,9 +3,7 @@ const mockUsers = require("../dumpFiles/users")
 const jwtKey = "SecretKey";
  const jwtEopiry = "300000"
 
- let signInUtility={
-     "signIn": function (req,res,next){
-        console.log("hi")
+ function signIn (req,res,next){
     const username = req.body.username;
     const password = req.body.password
     console.log(mockUsers[username])
@@ -22,8 +20,34 @@ const jwtKey = "SecretKey";
        // res.cookie("token", token, { maxAge: jwtEopiry * 1000 })
        // res.send("Login Successful")
     }
+    function verifyToken(req, res, next) {
+        // console.log(req.headers)
+         const bearerHeader = req.headers['authorization'];
+       console.log(bearerHeader)
+         if (bearerHeader) {
+           const bearer = bearerHeader.split(' ');
+           const bearerToken = bearer[1];
+           console.log(bearerToken)
+         try{
+           let payload = jwt.verify(bearerToken,jwtKey)
+           console.log(payload.exp)
+           next();
+         }
+         catch(e){
+           console.log(e.message)
+           res.sendStatus(403);
+         }
+           
+         } else {
+           // Forbidden
+           res.sendStatus(403);
+         }
+       }
+ module.exports={
+    signIn,
+    verifyToken
  }
- module.exports = signInUtility;
+ 
 
   
  
