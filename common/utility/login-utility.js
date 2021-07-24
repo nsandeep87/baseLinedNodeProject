@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const mockUsers = require("../dumpFiles/users")
 const jwtKey = "SecretKey";
- const jwtEopiry = "300000"
+const jwtEopiry = '5h'; //"expiresIn" can be a number of seconds or string that repesents a timespan eg: "1d", "20h"
 
  function signIn (req,res,next){
     const username = req.body.username;
@@ -14,7 +14,7 @@ const jwtKey = "SecretKey";
             "userName":username
         },jwtKey,{
            algorithm: "HS256",
-           expiresIn: jwtEopiry,
+           expiresIn: jwtEopiry
         })
         return token
        // res.cookie("token", token, { maxAge: jwtEopiry * 1000 })
