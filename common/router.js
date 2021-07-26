@@ -10,7 +10,7 @@ require('dotenv').config()
 
 // Got the below connection string from MongoDB atlas
 // TO DO: Move below to config file
-const mongoDB = process.env.MONGO_URL;
+const mongoDB = "mongodb://mongo:27017/notes";
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true}); // extraParams
 const db = mongoose.connection;
 
